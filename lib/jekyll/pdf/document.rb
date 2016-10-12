@@ -38,6 +38,9 @@ module Jekyll
         @partials.each do |partial|
           @settings[partial] = Jekyll::PDF::Partial.new(self, @settings[partial]) if @settings[partial] != nil
         end
+
+        self.write('./_site')
+
       end
 
       # Recursively merge settings from the page, layout, site config & jekyll-pdf defaults
