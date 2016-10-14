@@ -1,4 +1,4 @@
-try_require "jekyll-assets" do
+require "jekyll-assets" do
 
   module Jekyll
     module PDF

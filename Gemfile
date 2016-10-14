@@ -5,7 +5,7 @@ group :test do
   gem "rake"
 end
 
-gem "jekyll-assets", "~> 2.2", :require => false
+gem "jekyll-assets", "~> 2.2", :require => true
 
 # Fix for travis
 if (Gem::Version.new(RUBY_VERSION) < Gem::Version.new('2.2.2'))
