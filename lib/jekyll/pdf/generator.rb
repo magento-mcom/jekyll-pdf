@@ -2,7 +2,7 @@ module Jekyll
   module PDF
     class Generator < Jekyll::Generator
       safe true
-      priority :lowest
+      priority :low
 
       def generate(site)
 
