@@ -21,6 +21,9 @@ module Jekyll
         # Set layout to the PDF layout
         self.data['layout'] = layout
 
+        # Don't create PDF version of PDF files
+        self.data['pdf'] = false
+
         # Get PDF settings from the layouts
         Jekyll::Utils.deep_merge_hashes!(@settings, self.getConfig(self.data))
 
