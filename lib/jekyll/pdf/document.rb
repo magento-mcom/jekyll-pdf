@@ -24,6 +24,9 @@ module Jekyll
         # Don't create PDF version of PDF files
         self.data['pdf'] = false
 
+        # Don't create PDF version of PDF files
+        self.data['menu_node'] = "hidden"
+
         # Get PDF settings from the layouts
         Jekyll::Utils.deep_merge_hashes!(@settings, self.getConfig(self.data))
 
