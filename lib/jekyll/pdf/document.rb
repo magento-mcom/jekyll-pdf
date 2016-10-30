@@ -25,6 +25,12 @@ module Jekyll
         # Set layout to the PDF layout
         self.data['layout'] = layout
 
+        # Don't create PDF version of PDF files
+        self.data['pdf'] = false
+
+        # Don't create PDF version of PDF files
+        self.data['menu_node'] = "hidden"
+
         # Get PDF settings from the layouts
         Jekyll::Utils.deep_merge_hashes!(@settings, self.getConfig(self.data))
 
@@ -70,6 +76,9 @@ module Jekyll
         path = File.join(dest_prefix, CGI.unescape(self.url))
         dest = File.dirname(path)
 
+        #Update image paths
+        self.output = fix_image_path(self.output,dest)
+
         # Create directory
         FileUtils.mkdir_p(dest) unless File.exist?(dest)
 
@@ -87,6 +96,27 @@ module Jekyll
         kit = PDFKit.new(self.output, @settings)
         file = kit.to_file(path)
       end
+
+        def fix_image_path(org_content,path)
+
+            prefix = 'file:'
+
+            content = org_content.clone
+
+           content.scan(/<img src="(.*\.\w\w\w)"/) do |img|
+
+                match_pattern = "<img src=\"#{img[0]}\""
+
+                full_path = "<img src=\"#{prefix}#{path}/#{img[0]}\""
+
+                content = content.sub( match_pattern, full_path )
+
+            end
+
+            content
+
+        end
+
 
       def layout()
         # Set page layout to the PDF layout
