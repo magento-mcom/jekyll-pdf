@@ -33,7 +33,7 @@ module Jekyll
         end
 
         # Set pdf_url variable in the source page (for linking to the PDF version)
-        page.data['pdf_url'] = self.url
+        page.data['pdf_url'] = site.baseurl + self.url
 
         # Set html_url variable in the source page (for linking to the HTML version)
         self.data['html_url'] = page.url
