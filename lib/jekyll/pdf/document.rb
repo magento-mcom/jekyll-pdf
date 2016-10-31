@@ -14,10 +14,6 @@ module Jekyll
         @settings = site.config.key?('pdf') ? site.config['pdf'].clone : {}
         @partials = ['cover','header_html','footer_html']
 
-        dest_folder = '/pdf/_site'
-
-        dest_path = [base, dest_folder].reject(&:empty?).join('')
-
         self.process(@name)
         self.data = page.data.clone
         self.content = page.content.clone
@@ -48,8 +44,6 @@ module Jekyll
         @partials.each do |partial|
           @settings[partial] = Jekyll::PDF::Partial.new(self, @settings[partial]) if @settings[partial] != nil
         end
-
-        self.write(dest_path)
 
       end
 
