@@ -65,6 +65,9 @@ module Jekyll
       # Write the PDF file
       # todo: remove pdfkit dependency
       def write(dest_prefix, dest_suffix = nil)
+
+        if @settings["dry_run"] == true then return end
+
         self.render(@site.layouts, @site.site_payload) if self.output == nil
 
         path = File.join(dest_prefix, CGI.unescape(self.url))
